@@ -8,7 +8,7 @@ import acesso_email
 # Configuração de e-mail
 email_remetente = acesso_email.username
 senha = acesso_email.password
-email_destinatario = acesso_email.username
+email_destinatario = [acesso_email.username]
 email_cc = ["lemmy@gmail.com", "ozzy@gmail.com"]
 smtp_server = "smtp.gmail.com"
 smtp_port = 587
@@ -27,7 +27,7 @@ def enviar_alerta(url, status):
 
     msg = MIMEMultipart()
     msg["From"] = email_remetente
-    msg["To"] = email_destinatario
+    msg["To"] = ", ".join(email_destinatario)
     msg["Cc"] = ", ".join(email_cc)
     msg["Subject"] = assunto
     msg.attach(MIMEText(corpo, "plain"))
